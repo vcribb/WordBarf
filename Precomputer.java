@@ -9,19 +9,35 @@ public class Precomputer{
 	Scanner reader = new Scanner(f);
 	while(reader.hasNext()){
 	    ans.add(reader.next());
-		    }
+	}
+	
+	System.out.println( ans);
 		
-		System.out.println( ans);
+		
+	}catch(FileNotFoundException e){
 	    
-	   
-    }catch(FileNotFoundexception e){
+	    //
 	    
-	//
-
-
+	    
 	}
     }
-	
+    
+    
+    // for(int i = 0; i <
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    
     }
     
     
