@@ -20,8 +20,9 @@ public class Precomputer{
 
     
     public static void main(String[] args){
-	try{
-	ArrayList<String> ans = new ArrayList<String>();
+		ArrayList<String> ans = new ArrayList<String>();
+    try{
+
 	File f = new File("FourLetterWords.txt");
 	Scanner reader = new Scanner(f);
 	while(reader.hasNext()){
@@ -49,7 +50,8 @@ public class Precomputer{
 		    
 	       
 	    }
-	System.out.println(ans.get(i) + " : " + wordsforI); 
+	System.out.println(ans.get(i) + " : " + wordsForI); 
+    System.out.println("\n\n\n\n\n"); 
     }
     
 
