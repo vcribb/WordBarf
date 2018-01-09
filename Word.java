@@ -6,7 +6,7 @@ public class Word{
     public Word(String w){
 	word = w;
 	visited = false;
-	//add linksTo later
+	linksTo = new Word[50];
     }
 
     //accessor for visited
