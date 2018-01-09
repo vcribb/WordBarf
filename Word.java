@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.io.*;
 public class Word{
     private String word;
     private Word[] linksTo;
@@ -48,16 +48,18 @@ public class Word{
     
     public static void main (String[] args){
         Word[] words = new Word[2404];
-       
+        
+        for(int i = 0; i < words.length; i++){
+           words[i] = new Word();
+        }
      
         try{
 
             File f = new File("adjacentWords.txt");
             Scanner reader = new Scanner(f);
             int i = 0;
-            while(reader.hasNext()){
-                words[i] = new Word();              
-                words[i].makeLinks(words[i].parseLine(reader.nextLine()));
+            while(reader.hasNext()){           
+                words[i].makeLinks(words[i].parseLine(reader.nextLine()), words);
                 i++;
             }
         }catch(FileNotFoundException e){
@@ -65,14 +67,10 @@ public class Word{
         }
  
         
+        
+    
         for(int i = 0; i < words.length; i++){
-           System.out.println(words[i].getWord());
+            System.out.println(words[i].getWord());
         }
-    
-    
-    Word robert = new Word("fish");
-
-
-	
     }
 }
