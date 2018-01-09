@@ -45,13 +45,13 @@ public class Precomputer{
 	String wordsForI = "";
 	for ( int j = 0; j < ans.size(); j++){
 		if( adjacent(ans.get(i), ans.get(j))){
-		    wordsForI += ans.get(j) + ' ';
+		    wordsForI += j + " " ;
 		}
 		    
 	       
 	    }
-	System.out.println(ans.get(i) + " : " + wordsForI); 
-    System.out.println("\n\n\n\n\n"); 
+	System.out.println(ans.get(i) + " " + wordsForI); 
+    //System.out.println("\n\n\n\n\n"); 
     }
     
 
