@@ -29,6 +29,7 @@ public class Word{
     }
 
     public void makeLinks(int[] indices, Word[] wordList){
+       linksTo = new Word[indices.length];
        for(int i = 0; i < indices.length; i++){
            linksTo[i] = wordList[indices[i]];
        }   
@@ -36,10 +37,11 @@ public class Word{
     
     public int[] parseLine(String line){
         word = line.substring(0,4);
-        line = line.substring(4,line.length());
+        line = line.substring(5,line.length()) + " ";
         String[] wordFam = line.split(" ");
         int[] wordFam2 = new int[wordFam.length];
         for(int x = 0; x < wordFam.length; x++){
+            System.out.println("a");
             wordFam2[x] = Integer.parseInt(wordFam[x]);
 	    
         }
@@ -54,11 +56,10 @@ public class Word{
         }
      
         try{
-
             File f = new File("adjacentWords.txt");
             Scanner reader = new Scanner(f);
             int i = 0;
-            while(reader.hasNext()){           
+            while(reader.hasNext()){  
                 words[i].makeLinks(words[i].parseLine(reader.nextLine()), words);
                 i++;
             }
