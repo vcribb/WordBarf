@@ -37,11 +37,11 @@ public class Word{
     
     public int[] parseLine(String line){
         word = line.substring(0,4);
-        line = line.substring(5,line.length()) + " ";
+        line = line + "   ";
+        line = line.substring(5,line.length());
         String[] wordFam = line.split(" ");
         int[] wordFam2 = new int[wordFam.length];
         for(int x = 0; x < wordFam.length; x++){
-            System.out.println("a");
             wordFam2[x] = Integer.parseInt(wordFam[x]);
 	    
         }
