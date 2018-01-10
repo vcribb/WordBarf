@@ -24,11 +24,28 @@ public class Word{
         return word;
     }
 
-    public Word nextWord(){
-        if (linksTo.length != 0){
-        return linksTo[0];//goes through linksTo and finds the most similar word
+    public Word nextWord(String end){
+	if (linksTo.length != 0){
+	    Word next = linksTo[0];
+	    int maxSimi = 0;
+	    for(int i = 0; i < linksTo.length; i ++){
+		int simi = 0;
+		for(int x = 0; x < 4; x++){
+		    if (linksTo[i].getWord().charAt(x) == end.charAt(x)){
+			simi++;
+		    }
+		}
+		if (maxSimi < simi){
+		    next = linksTo[i];
+		    maxSimi = simi;
+		}
+
+	    }
+	
+	    return next;
         }
-        return new Word();
+
+	return null;
     }
 
     public void makeLinks(int[] indices, Word[] wordList){
@@ -71,12 +88,19 @@ public class Word{
         }
  
         
-        
+
+
+
+
+	
     
         for(int i = 0; i < words.length; i++){
             System.out.println(words[i].getWord());
-            
-            System.out.println(words[i].nextWord().getWord() + "\n\n\n\n\n");
+            try{
+            System.out.println(words[i].nextWord("doom").getWord() + "\n\n\n\n\n");
+	    }catch(NullPointerException e){
+
+	    }
         }
     }
 }
