@@ -24,8 +24,11 @@ public class Word{
         return word;
     }
 
-    public Word nextWord(String s){
+    public Word nextWord(){
+        if (linksTo.length != 0){
         return linksTo[0];//goes through linksTo and finds the most similar word
+        }
+        return new Word();
     }
 
     public void makeLinks(int[] indices, Word[] wordList){
@@ -72,6 +75,8 @@ public class Word{
     
         for(int i = 0; i < words.length; i++){
             System.out.println(words[i].getWord());
+            
+            System.out.println(words[i].nextWord().getWord() + "\n\n\n\n\n");
         }
     }
 }
