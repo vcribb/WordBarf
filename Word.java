@@ -101,8 +101,33 @@ public class Word{
         }
         return wordFam2;
     }
+
+    public static boolean isEnglish(String word){
+	try{
+	    File f = new File("FourLetterWords.txt");
+	    Scanner in = new Scanner(f);
+	    String s = "";
+	    while (in.hasNext()){
+		s += in.nextLine();
+	    }
+	    in.close();
+	    String[] split = s.split(" ");
+	    for (int x = 0; x < split.length; x++){
+		if (split[x].equals(word)){
+		    return true;
+		}
+	    }
+	}
+	catch(FileNotFoundException e){
+	    System.exit(1);
+	}
+	return false;
+    }
     
     public static void directions(){
+	System.out.println("Welcome to Word Barf!");
+	System.out.println("This is a program that takes two four-letter English words and prints");
+	System.out.println("a string of words going from one to the other changing one letter at a time.");
 	System.out.println("Please enter the word you would like to start with,");
 	System.out.println("followed by the word you would like to end with in the following format:");
 	System.out.println("java Word startWord endWord");
@@ -129,8 +154,13 @@ public class Word{
             
 		}
           
-		String startW = args[0];
-		String endW = args[1];
+		String startW = args[1];
+		String endW = args[0];
+
+		if (!isEnglish(startW) || !isEnglish(endW)){
+		    directions();
+		    System.exit(1);
+		}
         
         
 		for(int i = 0; i < words.length; i++){
