@@ -57,7 +57,7 @@ public class Word{
     
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
-            if(linksTo[i].getDistance() = 2404){
+            if(linksTo[i].getDistance() == 2404){
                 linksTo[i].setDistance(d);
             }
         }
@@ -65,7 +65,7 @@ public class Word{
     
     public boolean branched(){
         for(int i = 0; i < linksTo.length; i++){  
-            if(linksTo[i].getDistance() = 2404){
+            if(linksTo[i].getDistance() == 2404){
                 return false;
             }
         }
@@ -129,25 +129,32 @@ public class Word{
         */
         
         //test for hate to love
+        String startW = "hate";
+        String endW = "love";
         
-        for(j = 0; j < words.length; j++){
-            if(words[i].getWord().equals("hate"){
+        
+        for(int i = 0; i < words.length; i++){
+            if(words[i].getWord().equals(startW)){
                 words[i].setDistance(0);
             }
                 
         }
         
-        boolean allFull = false;
+        
         boolean found = false;
-            
-        for(int i = 0; allFull || found; i++ ){
-            
-            for(j = 0; j < words.length; j++){
-                if(words[j].getDistance() = i){
+        //boolean allFull = false;
+        for(int i = 0; /* !allFull && */ !found ; i++ ){
+            //allFull = true;
+            for(int j = 0; j < words.length; j++){
+                if(words[j].getDistance() == i){
+                    // allFull = allFull && words[j].branched(); 
                     words[j].branch(i + 1);
                     
+                    System.out.println(words[j].getWord());
+                    System.out.println(words[j].getDistance());
                 }
-                if(words[j].getWord().equals("love")){
+                if(words[j].getWord().equals(endW) && words[j].getDistance() < 2404){
+                    System.out.println(words[j].getDistance());
                     found = true;
                 }
             }
@@ -155,7 +162,11 @@ public class Word{
         }
         
         
+        //for()
         
-        }
+        
+        
+        
     }
 }
+
