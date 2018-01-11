@@ -73,7 +73,7 @@ public class Word{
     }
     
     public Word backTrack(){
-        mindex = 0;
+        int mindex = 0;
         for(int i = 0; i < linksTo.length; i ++){
             if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
                 mindex = i;
@@ -161,31 +161,33 @@ public class Word{
                     allFull = allFull && words[j].branched(); 
                     words[j].branch(i + 1);
                     
-                    System.out.println(words[j].getWord());
-                    System.out.println(words[j].getDistance());
+                    //System.out.println(words[j].getWord());
+                    //System.out.println(words[j].getDistance());
                 }
                 if(words[j].getWord().equals(endW) && words[j].getDistance() < 2404){
-                    System.out.println(words[j].getDistance());
+                    //System.out.println(words[j].getDistance());
                     found = true;
                 }
             }
             
         }
         
-        System.out.println(allFull);
-        
+        //System.out.println(allFull);
+        System.out.println(endW);
         boolean done = false;
-        Word on;
-        while(!done){
-            for(int x = 0; x < words.length; x++){
-                if(words[x].getWord.equals(endW) && words[x].getDistance() != 2404){
+        Word on = new Word();
+        
+        for(int x = 0; x < words.length; x++){
+                if(words[x].getWord().equals(endW)){
                     on = words[x];
-                    )
             }
             
         }
         
-        
+        while(on.getDistance() != 0){
+            on = on.backTrack();
+            System.out.println(on.getWord());
+        }
         
         
     }
