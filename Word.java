@@ -72,6 +72,16 @@ public class Word{
         return true;
     }
     
+    public Word backTrack(){
+        mindex = 0;
+        for(int i = 0; i < linksTo.length; i ++){
+            if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+                mindex = i;
+            }
+        }
+        return linksTo[mindex];
+    }
+    
     public void makeLinks(int[] indices, Word[] wordList){
        linksTo = new Word[indices.length];
        for(int i = 0; i < indices.length; i++){
@@ -91,6 +101,8 @@ public class Word{
         }
         return wordFam2;
     }
+    
+    
     
     public static void main (String[] args){
         Word[] words = new Word[2404];
@@ -137,7 +149,6 @@ public class Word{
             if(words[i].getWord().equals(startW)){
                 words[i].setDistance(0);
             }
-                
         }
         
         
@@ -160,9 +171,19 @@ public class Word{
             }
             
         }
+        
         System.out.println(allFull);
         
-        //for()
+        boolean done = false;
+        Word on;
+        while(!done){
+            for(int x = 0; x < words.length; x++){
+                if(words[x].getWord.equals(endW) && words[x].getDistance() != 2404){
+                    on = words[x];
+                    )
+            }
+            
+        }
         
         
         
