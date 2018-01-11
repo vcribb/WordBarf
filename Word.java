@@ -3,7 +3,7 @@ import java.io.*;
 public class Word{
     private String word;
     private Word[] linksTo;
-    //possibly totally unnesesairy
+    //possibly totally unnecessary
     //private boolean visited;
     private int distance;
 
@@ -27,7 +27,7 @@ public class Word{
         return word;
     }
 
-    //possibly totally irrelivant depending on the success of our algorithm.
+    //possibly totally irrelevant depending on the success of our algorithm.
     /*
     public Word nextWord(String end){
 	if (linksTo.length != 0){
@@ -102,94 +102,83 @@ public class Word{
         return wordFam2;
     }
     
-    
+    public static void directions(){
+	System.out.println("Please enter the word you would like to start with,");
+	System.out.println("followed by the word you would like to end with in the following format:");
+	System.out.println("java Word startWord endWord");
+	System.out.println("Thank you!");
+    }
     
     public static void main (String[] args){
-        Word[] words = new Word[2404];
+	if (args.length == 2){
+		Word[] words = new Word[2404];
         
-        for(int i = 0; i < words.length; i++){
-           words[i] = new Word();
-        }
+		for(int i = 0; i < words.length; i++){
+		    words[i] = new Word();
+		}
      
-        try{
-            File f = new File("adjacentWords.txt");
-            Scanner reader = new Scanner(f);
-            int i = 0;
-            while(reader.hasNext()){  
-                words[i].makeLinks(words[i].parseLine(reader.nextLine()), words);
-                i++;
-            }
-        }catch(FileNotFoundException e){
+		try{
+		    File f = new File("adjacentWords.txt");
+		    Scanner reader = new Scanner(f);
+		    int i = 0;
+		    while(reader.hasNext()){  
+			words[i].makeLinks(words[i].parseLine(reader.nextLine()), words);
+			i++;
+		    }
+		}catch(FileNotFoundException e){
             
-        }
- 
-        
-
-
-        
-
-	   //for testing
-       /*
-        for(int i = 0; i < words.length; i++){
-            System.out.println(words[i].getWord());
-            try{
-            System.out.println(words[i].nextWord("doom").getWord() + "\n\n\n\n\n");
-	    }catch(NullPointerException e){
-            System.out.println("\n");
-	    }
-        
-        */
-        
-        //test for hate to love
-        String startW = "hate";
-        String endW = "love";
+		}
+          
+		String startW = "hate";
+		String endW = "love";
         
         
-        for(int i = 0; i < words.length; i++){
-            if(words[i].getWord().equals(startW)){
-                words[i].setDistance(0);
-            }
-        }
+		for(int i = 0; i < words.length; i++){
+		    if(words[i].getWord().equals(startW)){
+			words[i].setDistance(0);
+		    }
+		}
         
         
-        boolean found = false;
-        boolean allFull = false;
-        for(int i = 0; !allFull &&  !found ; i++ ){
-            allFull = true;
-            for(int j = 0; j < words.length; j++){
-                if(words[j].getDistance() == i){
-                    allFull = allFull && words[j].branched(); 
-                    words[j].branch(i + 1);
+		boolean found = false;
+		boolean allFull = false;
+		for(int i = 0; !allFull &&  !found ; i++ ){
+		    allFull = true;
+		    for(int j = 0; j < words.length; j++){
+			if(words[j].getDistance() == i){
+			    allFull = allFull && words[j].branched(); 
+			    words[j].branch(i + 1);
                     
-                    //System.out.println(words[j].getWord());
-                    //System.out.println(words[j].getDistance());
-                }
-                if(words[j].getWord().equals(endW) && words[j].getDistance() < 2404){
-                    //System.out.println(words[j].getDistance());
-                    found = true;
-                }
-            }
+			    //System.out.println(words[j].getWord());
+			    //System.out.println(words[j].getDistance());
+			}
+			if(words[j].getWord().equals(endW) && words[j].getDistance() < 2404){
+			    //System.out.println(words[j].getDistance());
+			    found = true;
+			}
+		    }
             
-        }
+		}
         
-        //System.out.println(allFull);
-        System.out.println(endW);
-        boolean done = false;
-        Word on = new Word();
+		//System.out.println(allFull);
+		System.out.println(endW);
+		boolean done = false;
+		Word on = new Word();
         
-        for(int x = 0; x < words.length; x++){
-                if(words[x].getWord().equals(endW)){
-                    on = words[x];
-            }
+		for(int x = 0; x < words.length; x++){
+		    if(words[x].getWord().equals(endW)){
+			on = words[x];
+		    }
             
-        }
+		}
         
-        while(on.getDistance() != 0){
-            on = on.backTrack();
-            System.out.println(on.getWord());
-        }
+		while(on.getDistance() != 0){
+		    on = on.backTrack();
+		    System.out.println(on.getWord());
+		}
+	    }
+	    else{directions();}
         
-        
-    }
+	    }
 }
 
