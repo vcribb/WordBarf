@@ -57,8 +57,19 @@ public class Word{
     
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
-            linksTo[i].setDistance(d);
+            if(linksTo[i].getDistance() = 2404){
+                linksTo[i].setDistance(d);
+            }
         }
+    }
+    
+    public boolean branched(){
+        for(int i = 0; i < linksTo.length; i++){  
+            if(linksTo[i].getDistance() = 2404){
+                return false;
+            }
+        }
+        return true;
     }
     
     public void makeLinks(int[] indices, Word[] wordList){
@@ -133,9 +144,12 @@ public class Word{
             
             for(j = 0; j < words.length; j++){
                 if(words[j].getDistance() = i){
-                    words[j].
+                    words[j].branch(i + 1);
+                    
                 }
-                
+                if(words[j].getWord().equals("love")){
+                    found = true;
+                }
             }
             
         }
