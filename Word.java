@@ -142,12 +142,12 @@ public class Word{
         
         
         boolean found = false;
-        //boolean allFull = false;
-        for(int i = 0; /* !allFull && */ !found ; i++ ){
-            //allFull = true;
+        boolean allFull = false;
+        for(int i = 0; !allFull &&  !found ; i++ ){
+            allFull = true;
             for(int j = 0; j < words.length; j++){
                 if(words[j].getDistance() == i){
-                    // allFull = allFull && words[j].branched(); 
+                    allFull = allFull && words[j].branched(); 
                     words[j].branch(i + 1);
                     
                     System.out.println(words[j].getWord());
@@ -160,7 +160,7 @@ public class Word{
             }
             
         }
-        
+        System.out.println(allFull);
         
         //for()
         
