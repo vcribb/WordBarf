@@ -129,8 +129,8 @@ public class Word{
             
 		}
           
-		String startW = "hate";
-		String endW = "love";
+		String startW = args[0];
+		String endW = args[1];
         
         
 		for(int i = 0; i < words.length; i++){
@@ -177,8 +177,9 @@ public class Word{
 		    System.out.println(on.getWord());
 		}
 	    }
-	    else{directions();}
-        
+	    else{
+		directions();
 	    }
+    }
 }
 
