@@ -189,7 +189,17 @@ public class Word{
 		    }
             
 		}
-        
+
+
+
+		if(allFull){
+		    System.out.println("Sorry there is no such path");
+		    System.exit(1);
+		}
+
+
+
+		
 		//System.out.println(allFull);
 		System.out.println(endW);
 		boolean done = false;
