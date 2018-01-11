@@ -35,7 +35,7 @@ public class Word{
 			simi++;
 		    }
 		}
-		if (maxSimi < simi){
+		if (maxSimi < simi || ( !(linksTo[i].isVisited()) && next.isVisited())){
 		    next = linksTo[i];
 		    maxSimi = simi;
 		}
@@ -99,7 +99,7 @@ public class Word{
             try{
             System.out.println(words[i].nextWord("doom").getWord() + "\n\n\n\n\n");
 	    }catch(NullPointerException e){
-
+            System.out.println("\n");
 	    }
         }
     }
