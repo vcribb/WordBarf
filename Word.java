@@ -3,20 +3,23 @@ import java.io.*;
 public class Word{
     private String word;
     private Word[] linksTo;
-    private boolean visited;
+    //possibly totally unnesesairy
+    //private boolean visited;
+    private int distance;
 
     public Word(){
-        visited = false;
+    //    visited = false;
+        distance = 2404;
     }
 
 
-    public boolean isVisited(){
-        return visited;
+    public int getDistance(){
+        return distance;
     }
 
     
-    public void visit(){
-        visited = true;
+    public void setDistance(int d){
+         distance = d;
     }
 
 
@@ -24,6 +27,8 @@ public class Word{
         return word;
     }
 
+    //possibly totally irrelivant depending on the success of our algorithm.
+    /*
     public Word nextWord(String end){
 	if (linksTo.length != 0){
 	    Word next = linksTo[0];
@@ -48,6 +53,14 @@ public class Word{
 	return null;
     }
 
+    */
+    
+    public void branch(int d){
+        for(int i = 0; i < linksTo.length; i++){
+            linksTo[i].setDistance(d);
+        }
+    }
+    
     public void makeLinks(int[] indices, Word[] wordList){
        linksTo = new Word[indices.length];
        for(int i = 0; i < indices.length; i++){
@@ -90,10 +103,10 @@ public class Word{
         
 
 
+        
 
-
-	
-    
+	   //for testing
+       /*
         for(int i = 0; i < words.length; i++){
             System.out.println(words[i].getWord());
             try{
@@ -101,6 +114,34 @@ public class Word{
 	    }catch(NullPointerException e){
             System.out.println("\n");
 	    }
+        
+        */
+        
+        //test for hate to love
+        
+        for(j = 0; j < words.length; j++){
+            if(words[i].getWord().equals("hate"){
+                words[i].setDistance(0);
+            }
+                
+        }
+        
+        boolean allFull = false;
+        boolean found = false;
+            
+        for(int i = 0; allFull || found; i++ ){
+            
+            for(j = 0; j < words.length; j++){
+                if(words[j].getDistance() = i){
+                    words[j].
+                }
+                
+            }
+            
+        }
+        
+        
+        
         }
     }
 }
