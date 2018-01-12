@@ -1,15 +1,15 @@
 import java.util.*;
 import java.io.*;
-public class Word{
+public class Word5{
     private String word;
-    private Word[] linksTo;
+    private Word5[] linksTo;
     //possibly totally unnecessary
     //private boolean visited;
     private int distance;
 
-    public Word(){
+    public Word5(){
     //    visited = false;
-        distance = 2404;
+        distance = 5757;
     }
 
 
@@ -57,7 +57,7 @@ public class Word{
     
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
-            if(linksTo[i].getDistance() == 2404){
+            if(linksTo[i].getDistance() == 5757){
                 linksTo[i].setDistance(d);
             }
         }
@@ -65,14 +65,14 @@ public class Word{
     
     public boolean branched(){
         for(int i = 0; i < linksTo.length; i++){  
-            if(linksTo[i].getDistance() == 2404){
+            if(linksTo[i].getDistance() == 5757){
                 return false;
             }
         }
         return true;
     }
     
-    public Word backTrack(){
+    public Word5 backTrack(){
         int mindex = 0;
         for(int i = 0; i < linksTo.length; i ++){
             if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
@@ -82,17 +82,17 @@ public class Word{
         return linksTo[mindex];
     }
     
-    public void makeLinks(int[] indices, Word[] wordList){
-       linksTo = new Word[indices.length];
+    public void makeLinks(int[] indices, Word5[] wordList){
+       linksTo = new Word5[indices.length];
        for(int i = 0; i < indices.length; i++){
            linksTo[i] = wordList[indices[i]];
        }   
     }
     
     public int[] parseLine(String line){
-        word = line.substring(0,4);
+        word = line.substring(0,5);
         line = line + "   ";
-        line = line.substring(5,line.length());
+        line = line.substring(6,line.length());
         String[] wordFam = line.split(" ");
         int[] wordFam2 = new int[wordFam.length];
         for(int x = 0; x < wordFam.length; x++){
@@ -104,11 +104,12 @@ public class Word{
 
     public static boolean isEnglish(String word){
 	try{
-	    File f = new File("FourLetterWords.txt");
+	    File f = new File("FiveLetterWords.txt");
 	    Scanner in = new Scanner(f);
 	    String s = "";
 	    while (in.hasNext()){
-		s += in.nextLine();
+		s += in.next() + " ";
+		//System.out.println(s);
 	    }
 	    in.close();
 	    String[] split = s.split(" ");
@@ -136,14 +137,14 @@ public class Word{
     
     public static void main (String[] args){
 	if (args.length == 2){
-		Word[] words = new Word[2404];
+		Word5[] words = new Word5[5757];
         
 		for(int i = 0; i < words.length; i++){
-		    words[i] = new Word();
+		    words[i] = new Word5();
 		}
      
 		try{
-		    File f = new File("adjacentWords.txt");
+		    File f = new File("adjacentWords5.txt");
 		    Scanner reader = new Scanner(f);
 		    int i = 0;
 		    while(reader.hasNext()){  
@@ -157,10 +158,10 @@ public class Word{
 		String startW = args[1];
 		String endW = args[0];
 
-		if (!isEnglish(startW) || !isEnglish(endW)){
+			if (!isEnglish(startW) || !isEnglish(endW)){
 		    directions();
 		    System.exit(1);
-		}
+			}
         
         
 		for(int i = 0; i < words.length; i++){
@@ -182,7 +183,7 @@ public class Word{
 			    //System.out.println(words[j].getWord());
 			    //System.out.println(words[j].getDistance());
 			}
-			if(words[j].getWord().equals(endW) && words[j].getDistance() < 2404){
+			if(words[j].getWord().equals(endW) && words[j].getDistance() < 5757){
 			    //System.out.println(words[j].getDistance());
 			    found = true;
 			}
@@ -203,7 +204,7 @@ public class Word{
 		//System.out.println(allFull);
 		System.out.println(endW);
 		boolean done = false;
-		Word on = new Word();
+		Word5 on = new Word5();
         
 		for(int x = 0; x < words.length; x++){
 		    if(words[x].getWord().equals(endW)){
