@@ -23,7 +23,7 @@ public class Precomputer{
 		ArrayList<String> ans = new ArrayList<String>();
     try{
 
-	File f = new File("FourLetterWords.txt");
+	File f = new File("FiveLetterWords.txt");
 	Scanner reader = new Scanner(f);
 	while(reader.hasNext()){
 	    ans.add(reader.next());
