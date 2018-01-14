@@ -56,15 +56,6 @@ public class Word{
         return linksTo[mindex];
     }
 
-    /*makeLinks reads into the array of indices produced by parseLine and
-      copies the words with those indices into linksTo*/
-    public void makeLinks(int[] indices, Word[] wordList){
-	linksTo = new Word[indices.length];
-	for(int i = 0; i < indices.length; i++){
-	    linksTo[i] = wordList[indices[i]];
-	}   
-    }
-
     /*parseLine reads into the precomputed file of all four-letter English
       words and their adjacent words and returns an array of the indices of
       the adjacent four-letter words*/
@@ -81,6 +72,15 @@ public class Word{
         return wordFam2;
     }
 
+    /*makeLinks reads into the array of indices produced by parseLine and
+      copies the words with those indices into linksTo*/
+    public void makeLinks(int[] indices, Word[] wordList){
+	linksTo = new Word[indices.length];
+	for(int i = 0; i < indices.length; i++){
+	    linksTo[i] = wordList[indices[i]];
+	}   
+    }
+    
     /*isEnglish checks if a word is in the saved file of all four-letter
       English words*/
     public static boolean isEnglish(String word){
@@ -119,11 +119,10 @@ public class Word{
     public static void main (String[] args){
 	if (args.length == 2){
 	    Word[] words = new Word[2404];
-        
 	    for(int i = 0; i < words.length; i++){
 		words[i] = new Word();
 	    }
-     
+	    //creates a new Word for each four-letter English word
 	    try{
 		File f = new File("adjacentWords.txt");
 		Scanner reader = new Scanner(f);
@@ -132,29 +131,31 @@ public class Word{
 		    words[i].makeLinks(words[i].parseLine(reader.nextLine()), words);
 		    i++;
 		}
+		//writes the linksTo array for each Word
 	    }catch(FileNotFoundException e){
             
 	    }
           
 	    String startW = args[1];
 	    String endW = args[0];
+	    //takes the user input and makes them the starting and ending words
 
 	    if (!isEnglish(startW) || !isEnglish(endW)){
 		directions();
 		System.exit(1);
 	    }
-        
+	    //checks that the user has inputted two four-letter English words
         
 	    for(int i = 0; i < words.length; i++){
 		if(words[i].getWord().equals(startW)){
 		    words[i].setDistance(0);
 		}
 	    }
-        
+	    //sets the distance of the starting word to zero
         
 	    boolean found = false;
 	    boolean allFull = false;
-	    for(int i = 0; !allFull &&  !found ; i++ ){
+	    for(int i = 0; !allFull && !found ; i++ ){
 		allFull = true;
 		for(int j = 0; j < words.length; j++){
 		    if(words[j].getDistance() == i){
@@ -169,18 +170,16 @@ public class Word{
 			found = true;
 		    }
 		}
-            
 	    }
-
-
+	    /*goes through the words and assigns them a distance from the starting word,
+	      stopping once the end word has been found*/
 
 	    if(allFull){
-		System.out.println("Sorry there is no such path");
+		System.out.println("Sorry, there is no such path");
 		System.exit(1);
 	    }
-
-
-
+	    /*if all the Words have been branched and the end word has not been found,
+	      the system will exit*/
 		
 	    //System.out.println(allFull);
 	    System.out.println(endW);
@@ -198,6 +197,8 @@ public class Word{
 		on = on.backTrack();
 		System.out.println(on.getWord());
 	    }
+	    /*prints out the list of words, starting from the first word and "backtracking"
+	      to the last word*/
 	}
 	else{
 	    directions();
