@@ -14,25 +14,21 @@ public class Word{
         distance = 2404;
     }
 
-
     //accessor for the distance variable
     public int getDistance(){
         return distance;
     }
-
     
     //setter for the distance variable
     public void setDistance(int d){
 	distance = d;
     }
 
-
     //accessor for the word variable
     public String getWord(){
         return word;
     }
 
-    
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
             if(linksTo[i].getDistance() == 2404){
@@ -59,7 +55,9 @@ public class Word{
         }
         return linksTo[mindex];
     }
-    
+
+    /*makeLinks reads into the array of indices produced by parseLine and
+      copies the words with those indices into linksTo*/
     public void makeLinks(int[] indices, Word[] wordList){
 	linksTo = new Word[indices.length];
 	for(int i = 0; i < indices.length; i++){
@@ -83,6 +81,8 @@ public class Word{
         return wordFam2;
     }
 
+    /*isEnglish checks if a word is in the saved file of all four-letter
+      English words*/
     public static boolean isEnglish(String word){
 	try{
 	    File f = new File("FourLetterWords.txt");
@@ -104,7 +104,8 @@ public class Word{
 	}
 	return false;
     }
-    
+
+    //the directions print if the user doesn't input data correctly
     public static void directions(){
 	System.out.println("Welcome to Word Barf!");
 	System.out.println("This is a program that takes two four-letter English words and prints");
