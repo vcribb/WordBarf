@@ -29,6 +29,7 @@ public class Word{
         return word;
     }
 
+    //determines a Word's distance
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
             if(linksTo[i].getDistance() == 2404){
@@ -36,7 +37,8 @@ public class Word{
             }
         }
     }
-    
+
+    //determines if a Word has had its distance determined yet
     public boolean branched(){
         for(int i = 0; i < linksTo.length; i++){  
             if(linksTo[i].getDistance() == 2404){
@@ -45,7 +47,9 @@ public class Word{
         }
         return true;
     }
-    
+
+    /*backTrack determines the previous Word in the word ladder by finding
+      an adjacent word with a smaller distance*/
     public Word backTrack(){
         int mindex = 0;
         for(int i = 0; i < linksTo.length; i ++){
@@ -171,7 +175,7 @@ public class Word{
 		    }
 		}
 	    }
-	    /*goes through the words and assigns them a distance from the starting word,
+	    /*goes through the Words and assigns them a distance from the starting word,
 	      stopping once the end word has been found*/
 
 	    if(allFull){
