@@ -3,58 +3,35 @@ import java.io.*;
 
 public class Word{
     
-    private String word;
-    private Word[] linksTo;
-    //private boolean visited;
-    private int distance;
+    private String word; //stores a four-letter English word
+    
+    private Word[] linksTo; //stores adjacent four-letter English words
+    
+    private int distance; //the number of letters in the word that differ from
+    //the starting word
 
     public Word(){
-	//visited = false;
         distance = 2404;
     }
 
 
+    //accessor for the distance variable
     public int getDistance(){
         return distance;
     }
 
     
+    //setter for the distance variable
     public void setDistance(int d){
 	distance = d;
     }
 
 
+    //accessor for the word variable
     public String getWord(){
         return word;
     }
 
-    //possibly totally irrelevant depending on the success of our algorithm.
-    /*
-      public Word nextWord(String end){
-      if (linksTo.length != 0){
-      Word next = linksTo[0];
-      int maxSimi = 0;
-      for(int i = 0; i < linksTo.length; i ++){
-      int simi = 0;
-      for(int x = 0; x < 4; x++){
-      if (linksTo[i].getWord().charAt(x) == end.charAt(x)){
-      simi++;
-      }
-      }
-      if (maxSimi < simi || ( !(linksTo[i].isVisited()) && next.isVisited())){
-      next = linksTo[i];
-      maxSimi = simi;
-      }
-
-      }
-	
-      return next;
-      }
-
-      return null;
-      }
-
-    */
     
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
@@ -89,7 +66,10 @@ public class Word{
 	    linksTo[i] = wordList[indices[i]];
 	}   
     }
-    
+
+    /*parseLine reads into the precomputed file of all four-letter English
+      words and their adjacent words and returns an array of the indices of
+      the adjacent four-letter words*/
     public int[] parseLine(String line){
         word = line.substring(0,4);
         line = line + "   ";
