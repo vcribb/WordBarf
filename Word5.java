@@ -1,59 +1,33 @@
 import java.util.*;
 import java.io.*;
+
 public class Word5{
-    private String word;
-    private Word5[] linksTo;
-    //possibly totally unnecessary
-    //private boolean visited;
-    private int distance;
+    
+    private String word; //stores a five-letter English word
+
+    private Word5[] linksTo; //stores adjacent five-letter English words
+   
+    private int distance; //the number of letters in the word that differ from
+    //the starting word
 
     public Word5(){
-    //    visited = false;
         distance = 5757;
     }
 
-
+    //accessor for the distance variable
     public int getDistance(){
         return distance;
     }
 
-    
+    //setter for the distance variable
     public void setDistance(int d){
          distance = d;
     }
 
-
+    //accessor for the word variable
     public String getWord(){
         return word;
     }
-
-    //possibly totally irrelevant depending on the success of our algorithm.
-    /*
-    public Word nextWord(String end){
-	if (linksTo.length != 0){
-	    Word next = linksTo[0];
-	    int maxSimi = 0;
-	    for(int i = 0; i < linksTo.length; i ++){
-		int simi = 0;
-		for(int x = 0; x < 4; x++){
-		    if (linksTo[i].getWord().charAt(x) == end.charAt(x)){
-			simi++;
-		    }
-		}
-		if (maxSimi < simi || ( !(linksTo[i].isVisited()) && next.isVisited())){
-		    next = linksTo[i];
-		    maxSimi = simi;
-		}
-
-	    }
-	
-	    return next;
-        }
-
-	return null;
-    }
-
-    */
     
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
