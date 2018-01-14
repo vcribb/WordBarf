@@ -1,28 +1,26 @@
 import java.util.*;
 import java.io.*;
 
-public class Word{
+public class Word5{
     
-    private String word; //stores a four-letter English word
-    
-    private Word[] linksTo; //stores other Word objects, whose Strings are adjacent
-    //to that Word's String
-    
+    private String word; //stores a five-letter English word
+
+    private Word5[] linksTo; //stores adjacent five-letter English words
+   
     private int distance; //represents the number of different letters between two Words
-    
-    public Word(){
-        distance = 2404; //set to 2404 because this is the number of four-letter English
-	//words, so no word can have this distance
+
+    public Word5(){
+        distance = 5757; //the number of five-letter English words
     }
 
     //accessor for the distance variable
     public int getDistance(){
         return distance;
     }
-    
+
     //setter for the distance variable
     public void setDistance(int d){
-	distance = d;
+         distance = d;
     }
 
     //accessor for the word variable
@@ -30,19 +28,19 @@ public class Word{
         return word;
     }
 
-    //used in our algorithm, branches out into the linked list of Words by setting distances 
+    //determines a Word's distance
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
-            if(linksTo[i].getDistance() == 2404){
+            if(linksTo[i].getDistance() == 5757){
                 linksTo[i].setDistance(d);
             }
         }
     }
 
-    //determines if a Word has all the elements in its linksTo list reached already
+    //determines if a Word has had its distance determined yet
     public boolean branched(){
         for(int i = 0; i < linksTo.length; i++){  
-            if(linksTo[i].getDistance() == 2404){
+            if(linksTo[i].getDistance() == 5757){
                 return false;
             }
         }
@@ -50,8 +48,8 @@ public class Word{
     }
 
     /*backTrack determines the previous Word in the word ladder by finding
-      an adjacent word with the smallest distance*/
-    public Word backTrack(){
+      an adjacent word with a smaller distance*/
+    public Word5 backTrack(){
         int mindex = 0;
         for(int i = 0; i < linksTo.length; i ++){
             if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
@@ -60,14 +58,14 @@ public class Word{
         }
         return linksTo[mindex];
     }
-
-    /*parseLine reads into the precomputed file of all four-letter English
+    
+    /*parseLine reads into the precomputed file of all five-letter English
       words and their adjacent words and returns an array of the indices of
-      the adjacent four-letter words*/
+      the adjacent five-letter words*/
     public int[] parseLine(String line){
-        word = line.substring(0,4);
+        word = line.substring(0,5);
         line = line + "   ";
-        line = line.substring(5,line.length());
+        line = line.substring(6,line.length());
         String[] wordFam = line.split(" ");
         int[] wordFam2 = new int[wordFam.length];
         for(int x = 0; x < wordFam.length; x++){
@@ -76,25 +74,26 @@ public class Word{
         }
         return wordFam2;
     }
-
+    
     /*makeLinks reads into the array of indices produced by parseLine and
       populates the linksTo array with links to other words in the big array*/
-    public void makeLinks(int[] indices, Word[] wordList){
-	linksTo = new Word[indices.length];
-	for(int i = 0; i < indices.length; i++){
-	    linksTo[i] = wordList[indices[i]];
-	}   
+    public void makeLinks(int[] indices, Word5[] wordList){
+       linksTo = new Word5[indices.length];
+       for(int i = 0; i < indices.length; i++){
+           linksTo[i] = wordList[indices[i]];
+       }   
     }
-    
-    /*isEnglish checks if a word is in the saved file of all four-letter
+
+    /*isEnglish checks if a word is in the saved file of all five-letter
       English words*/
     public static boolean isEnglish(String word){
 	try{
-	    File f = new File("FourLetterWords.txt");
+	    File f = new File("FiveLetterWords.txt");
 	    Scanner in = new Scanner(f);
 	    String s = "";
 	    while (in.hasNext()){
-		s += in.nextLine();
+		s += in.next() + " ";
+		//System.out.println(s);
 	    }
 	    in.close();
 	    String[] split = s.split(" ");
@@ -113,41 +112,40 @@ public class Word{
     //the directions print if the user doesn't input data correctly
     public static void directions(){
 	System.out.println("Welcome to Word Barf!");
-	System.out.println("This is a program that takes two four-letter English words and prints");
+	System.out.println("This is a program that takes two five-letter English words and prints");
 	System.out.println("a string of words going from one to the other changing one letter at a time.");
 	System.out.println("Please enter the word you would like to start with,");
 	System.out.println("followed by the word you would like to end with in the following format:");
 	System.out.println("java Word startWord endWord");
 	System.out.println("Thank you!");
     }
-    
+
     public static void main (String[] args){
-	//checks that the user has inputted two four-letter English words
+	//checks that the user has inputted two five-letter English words
 	if (args.length == 2 && isEnglish(args[0]) && isEnglish(args[1])){
-	    //creates a new Word for each four-letter English word
-	    Word[] words = new Word[2404];
-	    for(int i = 0; i < words.length; i++){
-		words[i] = new Word();
+	    //creates a new Word for each five-letter English word
+	    Word5[] words = new Word5[5757];
+            for(int i = 0; i < words.length; i++){
+		words[i] = new Word5();
 	    }
-	    
+
 	    //writes the linksTo array for each Word
 	    try{
-		File f = new File("adjacentWords.txt");
+		File f = new File("adjacentWords5.txt");
 		Scanner reader = new Scanner(f);
 		int i = 0;
 		while(reader.hasNext()){  
 		    words[i].makeLinks(words[i].parseLine(reader.nextLine()), words);
 		    i++;
 		}
-		
+	     
 	    }catch(FileNotFoundException e){
             
 	    }
-        
+
 	    //takes the user input and makes them the starting and ending words
 	    String startW = args[1];
 	    String endW = args[0];
-	    
 
 	    //sets the distance of the starting word to zero
 	    for(int i = 0; i < words.length; i++){
@@ -155,42 +153,42 @@ public class Word{
 		    words[i].setDistance(0);
 		}
 	    }
-	    
-	    /*goes through the Words and assigns them a distance from the starting word,
+
+	     /*goes through the Words and assigns them a distance from the starting word,
 	      stopping once the end word has been found*/
 	    boolean found = false;
 	    boolean allFull = false;
-	    for(int i = 0; !allFull && !found ; i++ ){
+	    for(int i = 0; !allFull &&  !found ; i++ ){
 		allFull = true;
 		for(int j = 0; j < words.length; j++){
 		    if(words[j].getDistance() == i){
 			allFull = allFull && words[j].branched(); 
 			words[j].branch(i + 1);
                     
-			//System.out.println(words[j].getWord()); // for testing 
-			//System.out.println(words[j].getDistance()); // for testing
+			//System.out.println(words[j].getWord());
+			//System.out.println(words[j].getDistance());
 		    }
-		    if(words[j].getWord().equals(endW) && words[j].getDistance() < 2404){
-			//System.out.println(words[j].getDistance()); // for testing
+		    if(words[j].getWord().equals(endW) && words[j].getDistance() < 5757){
+			//System.out.println(words[j].getDistance());
 			found = true;
 		    }
 		}
+            
 	    }
-	    
+
 	    /*if all the Words have been branched and the end word has not been found,
 	      the system will exit*/
 	    if(allFull){
-		System.out.println("Sorry, there is no such path");
+		System.out.println("Sorry there is no such path");
 		System.exit(1);
 	    }
-	    
 		
-	    //System.out.println(allFull); // for testing
+	    //System.out.println(allFull);
 	    System.out.println(endW);
 	    boolean done = false;
-	    Word on = new Word();
-        
-	    /*prints out the list of words, starting from the first word and "backtracking"
+	    Word5 on = new Word5();
+
+	    /*prints out the list of words, starting from the first word and backtracking
 	      to the last word*/
 	    for(int x = 0; x < words.length; x++){
 		if(words[x].getWord().equals(endW)){
@@ -203,9 +201,8 @@ public class Word{
 		on = on.backTrack();
 		System.out.println(on.getWord());
 	    }
-	    
 	}
-	//prints directions if the user input does not comply with the format
+	//prints directions if the user input is not formatted correctly
 	else{
 	    directions();
 	}
