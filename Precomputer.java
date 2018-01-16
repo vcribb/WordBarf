@@ -5,7 +5,11 @@ public class Precomputer{
 
     /*determines if two words have a difference of exactly one letter*/
     public static boolean adjacent(String a, String b){
-	int count = 0;
+	if (a.length() != b.length()){
+        return false;
+    }
+    int count = 0;
+                
 	//count determines how many letters the two strings have in common
 	for(int i = 0; i < a.length(); i ++){
 	    if(a.charAt(i) != b.charAt(i)){
@@ -18,7 +22,7 @@ public class Precomputer{
     public static void main(String[] args){
 	ArrayList<String> ans = new ArrayList<String>();
 	try{
-	    File f = new File("FiveLetterWords.txt");
+	    File f = new File("EnglishWords.txt");
 	    Scanner reader = new Scanner(f);
 	    while(reader.hasNext()){
 		ans.add(reader.next());
@@ -35,7 +39,7 @@ public class Precomputer{
 		    wordsForI += j + " " ;
 		}
 	    }
-	    System.out.println(ans.get(i) + " " + wordsForI); 
+	    //System.out.println(ans.get(i) + " " + wordsForI); 
 	    //System.out.println("\n\n\n\n\n");
 	    //prints a word followed by its adjacent words
 	}
