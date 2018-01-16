@@ -25,13 +25,18 @@ public class Precomputer{
 	    File f = new File("EnglishWords.txt");
 	    Scanner reader = new Scanner(f);
 	    while(reader.hasNext()){
-		ans.add(reader.next());
+		if( reader.next().length() == 2){
+            ans.add(reader.next());
+        }
 	    }
 	    System.out.println(ans);
 	    //copies the five-letter English words into ans
 	}catch(FileNotFoundException e){
 	    
 	}
+    
+    /*
+    
 	for(int i = 0; i < ans.size(); i++){
 	    String wordsForI = "";
 	    for (int j = 0; j < ans.size(); j++){
@@ -43,7 +48,11 @@ public class Precomputer{
 	    //System.out.println("\n\n\n\n\n");
 	    //prints a word followed by its adjacent words
 	}
+    
+    */
     }
+    
+    
 }
     
     
