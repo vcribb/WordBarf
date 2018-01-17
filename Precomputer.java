@@ -4,8 +4,23 @@ import java.io.*;
 public class Precomputer{
 
     /*determines if two words have a difference of exactly one letter*/
+    
+    public static boolean adjacent(String a, String b){
+	if(a.length() == b.length()){
+	    int count = 0;
+	    for (int i = 0; i < a.length(); i++){
+		if (a.charAt(i) != b.charAt(i)){
+		    count++;
+		}
+	    }
+	    return count == 1;
 
 
+	}
+	return false;
+
+
+    }
     /*
     public static boolean adjacent(String a, String b){
 	if (a.length() != b.length()){
@@ -85,15 +100,13 @@ public class Precomputer{
 		    wordsForI += j + " " ;
 		}
 	    }
-	    //System.out.println(ans.get(i) + " " + wordsForI); 
-	    //System.out.println("\n\n\n\n\n");
+	    System.out.println(ans.get(i) + " " + wordsForI); 
+	    System.out.println("\n\n\n\n\n");
 	    //prints a word followed by its adjacent words
 	}
     
     
     }
-    
-    
 }
     
     
