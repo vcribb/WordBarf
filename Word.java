@@ -11,8 +11,8 @@ public class Word{
     private int distance; //represents the number of different letters between two Words
     
     public Word(){
-        distance = 2404; //set to 2404 because this is the number of four-letter English
-	//words, so no word can have this distance
+        distance = 10000; //set to 10000 because this is ridiculously high
+	//so no word can have this distance
     }
 
     //accessor for the distance variable
@@ -33,7 +33,7 @@ public class Word{
     //used in our algorithm, branches out into the linked list of Words by setting distances 
     public void branch(int d){
         for(int i = 0; i < linksTo.length; i++){
-            if(linksTo[i].getDistance() == 2404){
+            if(linksTo[i].getDistance() == 10000){
                 linksTo[i].setDistance(d);
             }
         }
@@ -42,7 +42,7 @@ public class Word{
     //determines if a Word has all the elements in its linksTo list reached already
     public boolean branched(){
         for(int i = 0; i < linksTo.length; i++){  
-            if(linksTo[i].getDistance() == 2404){
+            if(linksTo[i].getDistance() == 10000){
                 return false;
             }
         }
@@ -170,7 +170,7 @@ public class Word{
 			//System.out.println(words[j].getWord()); // for testing 
 			//System.out.println(words[j].getDistance()); // for testing
 		    }
-		    if(words[j].getWord().equals(endW) && words[j].getDistance() < 2404){
+		    if(words[j].getWord().equals(endW) && words[j].getDistance() < 10000){
 			//System.out.println(words[j].getDistance()); // for testing
 			found = true;
 		    }
