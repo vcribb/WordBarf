@@ -4,6 +4,9 @@ import java.io.*;
 public class Precomputer{
 
     /*determines if two words have a difference of exactly one letter*/
+
+
+    /*
     public static boolean adjacent(String a, String b){
 	if (a.length() != b.length()){
 	    if (a.length() == b.length()-1){
@@ -53,23 +56,27 @@ public class Precomputer{
 	return count == 1;
     }
 
+
+    */
+
     public static void main(String[] args){
 	ArrayList<String> ans = new ArrayList<String>();
 	try{
 	    File f = new File("EnglishWords.txt");
 	    Scanner reader = new Scanner(f);
 	    while(reader.hasNext()){
-		if( reader.next().length() == 2){
-		    ans.add(reader.next());
-		}
+		//	if( reader.next().length() == 2){
+		//System.out.println(reader.next());
+		ans.add(reader.next());
+		    //	}
 	    }
-	    System.out.println(ans);
+	    //  System.out.println(ans);
 	    //copies the five-letter English words into ans
 	}catch(FileNotFoundException e){
 	    
 	}
     
-    /*
+    
     
 	for(int i = 0; i < ans.size(); i++){
 	    String wordsForI = "";
@@ -83,7 +90,7 @@ public class Precomputer{
 	    //prints a word followed by its adjacent words
 	}
     
-    */
+    
     }
     
     
