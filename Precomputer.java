@@ -91,20 +91,27 @@ public class Precomputer{
 	    
 	}
     
-    
+	try(FileWriter fw = new FileWriter("EnglishConnections.txt", true);
+	    BufferedWriter bw = new BufferedWriter(fw);
+	    PrintWriter out = new PrintWriter(bw)){
     
 	for(int i = 0; i < ans.size(); i++){
 	    String wordsForI = "";
+
 	    for (int j = 0; j < ans.size(); j++){
 		if( adjacent(ans.get(i),ans.get(j))){
 		    wordsForI += j + " " ;
 		}
 	    }
+	    out.println(ans.get(i) + " " + wordsForI);
 	    System.out.println(ans.get(i) + " " + wordsForI); 
-	    System.out.println("\n\n\n\n\n");
+	    //System.out.println("\n\n\n\n\n");
 	    //prints a word followed by its adjacent words
 	}
     
+	    }catch (IOException e){
+	    //Big dab
+	}
     
     }
 }
