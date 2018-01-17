@@ -132,12 +132,16 @@ public class Word{
 	    
 	    //writes the linksTo array for each Word
 	    try{
-		File f = new File("adjacentWords.txt");
+		File f = new File("EnglishConnections.txt");
 		Scanner reader = new Scanner(f);
 		int i = 0;
 		while(reader.hasNext()){  
-		    words[i].makeLinks(words[i].parseLine(reader.nextLine()), words);
+            String newLine = reader.nextLine();
+            System.out.println(newLine);
+		    if(newLine.substring(0, newLine.indexOf(' ')).length() == 4){
+            words[i].makeLinks(words[i].parseLine(newLine), words);
 		    i++;
+            }
 		}
 		
 	    }catch(FileNotFoundException e){
