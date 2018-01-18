@@ -65,9 +65,9 @@ public class Word{
       words and their adjacent words and returns an array of the indices of
       the adjacent four-letter words*/
     public int[] parseLine(String line){
-        word = line.substring(0,4);
+        word = line.substring(0,line.indexOf(' '));
         line = line + "   ";
-        line = line.substring(5,line.length());
+        line = line.substring(line.indexOf(' ') + 1 ,line.length());
         String[] wordFam = line.split(" ");
         int[] wordFam2 = new int[wordFam.length];
         for(int x = 0; x < wordFam.length; x++){
@@ -125,9 +125,10 @@ public class Word{
 	//checks that the user has inputted two four-letter English words
 	if (args.length == 2 && isEnglish(args[0]) && isEnglish(args[1])){
 	    //creates a new Word for each four-letter English word
-	    Word[] words = new Word[126580];
+	    Word[] words = new Word[126576];
 	    for(int i = 0; i < words.length; i++){
 		words[i] = new Word();
+		//System.out.println("asdf");
 	    }
 	    
 	    //writes the linksTo array for each Word
@@ -137,23 +138,35 @@ public class Word{
 		int i = 0;
 		while(reader.hasNext()){
 		    String newLine = reader.nextLine();
-		    System.out.println(newLine);
+		    //System.out.println(newLine);
 		    
-		    if(newLine.substring(0, newLine.indexOf(' ')).length() == 4){
+		    // if(newLine.substring(0, newLine.indexOf(' ')).length() == 4){
+		    //	System.out.println(newLine);
 			words[i].makeLinks(words[i].parseLine(newLine), words);
 			i++;
-		    }
+			// }
 		}
 		
 	    }catch(FileNotFoundException e){
             
 	    }
-        
+
+	    // for testing purposes
+	    //  System.out.println("Completed the file parsing");
+
+	    
 	    //takes the user input and makes them the starting and ending words
 	    String startW = args[1];
 	    String endW = args[0];
 	    
-
+	    //For testing purposes
+	    for(int i = 0; i < words.length; i++){
+		//	System.out.println(words[i].getWord());
+		
+	    }
+	    
+	   
+	    
 	    //sets the distance of the starting word to zero
 	    for(int i = 0; i < words.length; i++){
 		if(words[i].getWord().equals(startW)){
