@@ -110,7 +110,7 @@ public class Word{
 	//the directions print if the user doesn't input data correctly
 	public static void directions(){
 	System.out.println("Welcome to Word Barf!");
-	System.out.println("This is a program that takes two four-letter English words and prints");
+	System.out.println("This is a program that takes two same length  English words and prints");
 	System.out.println("a string of words going from one to the other changing one letter at a time.");
 	System.out.println("Please enter the word you would like to start with,");
 	System.out.println("followed by the word you would like to end with in the following format:");
@@ -119,8 +119,8 @@ public class Word{
     }
     
     public static void main (String[] args){
-	//checks that the user has inputted two four-letter English words
-	if (args.length == 2 && isEnglish(args[0]) && isEnglish(args[1])){
+	//checks that the user has inputted two samelength English words
+	if (args.length == 2 && args[0].length() == args[1].length() && isEnglish(args[0]) && isEnglish(args[1])){
 	    //creates a new Word for each four-letter English word
 	    Word[] words = new Word[126576];
 	    for(int i = 0; i < words.length; i++){
