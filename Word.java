@@ -125,7 +125,7 @@ public class Word{
 	//checks that the user has inputted two four-letter English words
 	if (args.length == 2 && isEnglish(args[0]) && isEnglish(args[1])){
 	    //creates a new Word for each four-letter English word
-	    Word[] words = new Word[2404];
+	    Word[] words = new Word[126580];
 	    for(int i = 0; i < words.length; i++){
 		words[i] = new Word();
 	    }
@@ -135,13 +135,14 @@ public class Word{
 		File f = new File("EnglishConnections.txt");
 		Scanner reader = new Scanner(f);
 		int i = 0;
-		while(reader.hasNext()){  
-            String newLine = reader.nextLine();
-            System.out.println(newLine);
+		while(reader.hasNext()){
+		    String newLine = reader.nextLine();
+		    System.out.println(newLine);
+		    
 		    if(newLine.substring(0, newLine.indexOf(' ')).length() == 4){
-            words[i].makeLinks(words[i].parseLine(newLine), words);
-		    i++;
-            }
+			words[i].makeLinks(words[i].parseLine(newLine), words);
+			i++;
+		    }
 		}
 		
 	    }catch(FileNotFoundException e){
