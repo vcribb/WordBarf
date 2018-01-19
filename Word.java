@@ -117,6 +117,33 @@ public class Word{
 	System.out.println("java Word startWord endWord");
 	System.out.println("Thank you!");
     }
+
+
+
+
+    public static void recursify(Word endingWord){
+	//System.out.println(endingWord.getWord());
+	//System.out.println(startingWord.getWord());
+	Word[] linksList = new Word[0];
+	if(endingWord.getDistance() == 0){
+	    System.out.println(endingWord.getWord());
+	    System.out.println("\n");
+	}else{
+	    for(int i = 0; i < endingWord.linksTo.length; i ++){
+		
+		if (endingWord.linksTo[i].getDistance() < endingWord.getDistance()){
+		    linksList = endingWord.linksTo;
+		    System.out.println(endingWord.getWord());
+		    recursify(linksList[i]);
+		}
+		
+	    }
+	}
+	
+	
+	
+	
+    }
     
     public static void main (String[] args){
 	//checks that the user has inputted two samelength English words
@@ -155,7 +182,7 @@ public class Word{
 	    //takes the user input and makes them the starting and ending words
 	    String startW = args[1];
 	    String endW = args[0];
-	    
+	    Word endingWord = new Word();
 	    //For testing purposes
 	    for(int i = 0; i < words.length; i++){
 		//	System.out.println(words[i].getWord());
@@ -188,6 +215,7 @@ public class Word{
 		    if(words[j].getWord().equals(endW) && words[j].getDistance() < 10000){
 			//System.out.println(words[j].getDistance()); // for testing
 			found = true;
+			endingWord = words[j];
 		    }
 		}
 	    }
@@ -201,23 +229,28 @@ public class Word{
 	    
 		
 	    //System.out.println(allFull); // for testing
-	    System.out.println(endW);
-	    boolean done = false;
-	    Word on = new Word();
+	   
+	    //  System.out.println(endW);
+	    //  boolean done = false;
+	    //	    Word on = new Word();
         
 	    /*prints out the list of words, starting from the first word and "backtracking"
 	      to the last word*/
-	    for(int x = 0; x < words.length; x++){
-		if(words[x].getWord().equals(endW)){
-		    on = words[x];
-		}
+	    // for(int x = 0; x < words.length; x++){
+		//	if(words[x].getWord().equals(endW)){
+		    //  on = words[x];
+		    //	}
             
-	    }
+		// }
         
-	    while(on.getDistance() != 0){
-		on = on.backTrack();
-		System.out.println(on.getWord());
-	    }
+	    // while(on.getDistance() != 0){
+		//	on = on.backTrack();
+		//	System.out.println(on.getWord());
+		//   }
+
+	    //   System.out.println("\n\n\n\n\n\n\n\n\n");
+
+	    recursify(endingWord);
 	    
 	}
 	//prints directions if the user input does not comply with the format
