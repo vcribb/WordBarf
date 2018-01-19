@@ -120,21 +120,24 @@ public class Word{
 
 
 
+    
 
-    public static void recursify(Word endingWord){
+    public static void recursify(Word endingWord, ArrayList<String> runningList){
 	//System.out.println(endingWord.getWord());
 	//System.out.println(startingWord.getWord());
 	Word[] linksList = new Word[0];
 	if(endingWord.getDistance() == 0){
 	    System.out.println(endingWord.getWord());
-	    System.out.println("\n");
+	    System.out.println(runningList);
+	    runningList.clear();
 	}else{
 	    for(int i = 0; i < endingWord.linksTo.length; i ++){
 		
 		if (endingWord.linksTo[i].getDistance() < endingWord.getDistance()){
 		    linksList = endingWord.linksTo;
-		    System.out.println(endingWord.getWord());
-		    recursify(linksList[i]);
+		    runningList.add(endingWord.getWord());
+		    recursify(linksList[i], runningList);
+		    // System.out.println(endingWord.getWord());
 		}
 		
 	    }
@@ -249,8 +252,8 @@ public class Word{
 		//   }
 
 	    //   System.out.println("\n\n\n\n\n\n\n\n\n");
-
-	    recursify(endingWord);
+	    ArrayList<String> runningList = new ArrayList<String>();
+	    recursify(endingWord, runningList);
 	    
 	}
 	//prints directions if the user input does not comply with the format
