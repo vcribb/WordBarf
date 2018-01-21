@@ -50,7 +50,7 @@ public class Word{
     }
 
     /*backTrack determines the previous Word in the word ladder by finding
-      an adjacent word with the smallest distance. The Math.random is added to
+      an adjacent word with the smallest distance. The Random is added to
       return a different shortest path each time the program is run*/
     public Word recursify(){
 	int mindex = 0;
@@ -68,21 +68,6 @@ public class Word{
 	}
 
 	return linksTo[(int) mindexes.get( new Random().nextInt(mindexes.size()))];
-
-	//	if(((int) ((Math.random() * 10) % 2)) == 0){
-	//  for(int i = 0; i < linksTo.length; i++){
-	//	if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
-	//	    mindex = i;
-	//		}
-	//  }
-	//	}else{
-	//  for(int i = linksTo.length - 1; i >= 0; i--){
-	//      if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
-	//         mindex = i;
-	//      }
-	//  }
-	//	}
-	// return linksTo[mindex];
     }
 
     /*parseLine reads into the precomputed file of all English words
@@ -96,7 +81,6 @@ public class Word{
         int[] wordFam2 = new int[wordFam.length];
         for(int x = 0; x < wordFam.length; x++){
             wordFam2[x] = Integer.parseInt(wordFam[x]);
-	    
         }
         return wordFam2;
     }
