@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Word{
     
-    private String word; //stores a four-letter English word
+    private String word; //stores an English word
     
     private Word[] linksTo; //stores other Word objects, whose Strings are adjacent
     //to that Word's String
@@ -50,18 +50,10 @@ public class Word{
     }
 
     /*backTrack determines the previous Word in the word ladder by finding
-      an adjacent word with the smallest distance*/
+      an adjacent word with the smallest distance. The Math.random is added to
+      return a different shortest path each time the program is run*/
     public Word recursify(){
-	int mindex = 0;
-	
-	//	for(int i = 0; i < linksTo.length; i ++){
-	//   if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
-	//		mindex = i;
-	//  }
-	//	}
-
-
-        
+	int mindex = 0;     
 	if(((int) ((Math.random() * 10) % 2)) == 0){
 	    for(int i = 0; i < linksTo.length; i++){
 		if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
@@ -78,9 +70,9 @@ public class Word{
         return linksTo[mindex];
     }
 
-    /*parseLine reads into the precomputed file of all four-letter English
-      words and their adjacent words and returns an array of the indices of
-      the adjacent four-letter words*/
+    /*parseLine reads into the precomputed file of all English words
+      and their adjacent words and returns an array of the indices of
+      the adjacent words*/
     public int[] parseLine(String line){
         word = line.substring(0,line.indexOf(' '));
         line = line + "   ";
@@ -127,53 +119,21 @@ public class Word{
 	//the directions print if the user doesn't input data correctly
 	public static void directions(){
 	System.out.println("Welcome to Word Barf!");
-	System.out.println("This is a program that takes two same length  English words and prints");
+	System.out.println("This is a program that takes two same-length English words and prints");
 	System.out.println("a string of words going from one to the other changing one letter at a time.");
 	System.out.println("Please enter the word you would like to start with,");
 	System.out.println("followed by the word you would like to end with in the following format:");
 	System.out.println("java Word startWord endWord");
 	System.out.println("Thank you!");
     }
-
-
-
-    
-
-    //    public static void recursify(Word endingWord, ArrayList<String> runningList){
-	//System.out.println(endingWord.getWord());
-	//System.out.println(startingWord.getWord());
-    //	Word[] linksList = new Word[0];
-    //	if(endingWord.getDistance() == 0){
-    //	    System.out.println(endingWord.getWord());
-    //	    System.out.println(runningList);
-    //	    runningList.clear();
-    //	}else{
-    //	    for(int i = 0; i < endingWord.linksTo.length; i ++){
-    //		
-    //		if (endingWord.linksTo[i].getDistance() < endingWord.getDistance()){
-    //		    linksList = endingWord.linksTo;
-    //		    runningList.add(endingWord.getWord());
-    //		    recursify(linksList[i], runningList);
-		    // System.out.println(endingWord.getWord());
-    //		}
-    //		
-    //	    }
-    //	}
-	
-	
-	
-	
-	    //	}
-
-    
+   
     public static void main (String[] args){
-	//checks that the user has inputted two samelength English words
+	//checks that the user has inputted two same-length English words
 	if (args.length == 2 && args[0].length() == args[1].length() && isEnglish(args[0]) && isEnglish(args[1])){
-	    //creates a new Word for each four-letter English word
+	    //creates a new Word for each English word
 	    Word[] words = new Word[126576];
 	    for(int i = 0; i < words.length; i++){
 		words[i] = new Word();
-		//System.out.println("asdf");
 	    }
 	    
 	    //writes the linksTo array for each Word
@@ -183,35 +143,19 @@ public class Word{
 		int i = 0;
 		while(reader.hasNext()){
 		    String newLine = reader.nextLine();
-		    //System.out.println(newLine);
-		    
-		    // if(newLine.substring(0, newLine.indexOf(' ')).length() == 4){
-		    //	System.out.println(newLine);
 			words[i].makeLinks(words[i].parseLine(newLine), words);
 			i++;
-			// }
 		}
 		
 	    }catch(FileNotFoundException e){
             
 	    }
-
-	    // for testing purposes
-	    //  System.out.println("Completed the file parsing");
-
 	    
 	    //takes the user input and makes them the starting and ending words
 	    String startW = args[1];
 	    String endW = args[0];
 	    Word endingWord = new Word();
-	    //For testing purposes
-	    for(int i = 0; i < words.length; i++){
-		//	System.out.println(words[i].getWord());
-		
-	    }
-	    
-	   
-	    
+	       	    
 	    //sets the distance of the starting word to zero
 	    for(int i = 0; i < words.length; i++){
 		if(words[i].getWord().equals(startW)){
@@ -229,13 +173,9 @@ public class Word{
 		    if(words[j].getDistance() == i){
 			allFull = allFull && words[j].branched(); 
 			words[j].branch(i + 1);
-                    
-			//System.out.println(words[j].getWord()); // for testing 
-			//System.out.println(words[j].getDistance()); // for testing
 		    }
 		    if(words[j].getWord().equals(endW) && words[j].getDistance() < 10000){
-			//System.out.println(words[j].getDistance()); // for testing
-			found = true;
+		        found = true;
 			endingWord = words[j];
 		    }
 		}
@@ -247,10 +187,7 @@ public class Word{
 		System.out.println("Sorry, there is no such path");
 		System.exit(1);
 	    }
-	    
-		
-	    //System.out.println(allFull); // for testing
-	   
+   
 	      System.out.println(endW);
 	      boolean done = false;
 	    	    Word on = new Word();
@@ -268,11 +205,6 @@ public class Word{
 			on = on.recursify();
 			System.out.println(on.getWord());
 		   }
-
-	    //   System.out.println("\n\n\n\n\n\n\n\n\n");
-	    //    ArrayList<String> runningList = new ArrayList<String>();
-	    //  recursify(endingWord, runningList);
-	    
 	}
 	//prints directions if the user input does not comply with the format
 	else{
