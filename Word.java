@@ -54,23 +54,24 @@ public class Word{
     public Word recursify(){
 	int mindex = 0;
 	
-	for(int i = 0; i < linksTo.length; i ++){
-	    if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
-		mindex = i;
-	    }
-	}
+	//	for(int i = 0; i < linksTo.length; i ++){
+	//   if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+	//		mindex = i;
+	//  }
+	//	}
 
 
-        if(((int) ((Math.random() * 10) % 2)) == 2){
+        
+	if(((int) ((Math.random() * 10) % 2)) == 0){
 	    for(int i = 0; i < linksTo.length; i++){
-		if(linksTo[i].getDistance() == linksTo[mindex].getDistance()){
-		    return linksTo[i];
+		if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+		    mindex = i;
 		}
 	    }
 	}else{
 	    for(int i = linksTo.length - 1; i >= 0; i--){
-                if(linksTo[i].getDistance() == linksTo[mindex].getDistance()){
-                   return  linksTo[i];
+                if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+                   mindex = i;
                 }
             }
 	}
