@@ -51,13 +51,29 @@ public class Word{
 
     /*backTrack determines the previous Word in the word ladder by finding
       an adjacent word with the smallest distance*/
-    public Word backTrack(){
-        int mindex = 0;
-        for(int i = 0; i < linksTo.length; i ++){
-            if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
-                mindex = i;
+    public Word recursify(){
+	int mindex = 0;
+	
+	for(int i = 0; i < linksTo.length; i ++){
+	    if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+		mindex = i;
+	    }
+	}
+
+
+        if(((int) ((Math.random() * 10) % 2)) == 2){
+	    for(int i = 0; i < linksTo.length; i++){
+		if(linksTo[i].getDistance() == linksTo[mindex].getDistance()){
+		    return linksTo[i];
+		}
+	    }
+	}else{
+	    for(int i = linksTo.length - 1; i >= 0; i--){
+                if(linksTo[i].getDistance() == linksTo[mindex].getDistance()){
+                   return  linksTo[i];
+                }
             }
-        }
+	}
         return linksTo[mindex];
     }
 
@@ -122,31 +138,32 @@ public class Word{
 
     
 
-    public static void recursify(Word endingWord, ArrayList<String> runningList){
+    //    public static void recursify(Word endingWord, ArrayList<String> runningList){
 	//System.out.println(endingWord.getWord());
 	//System.out.println(startingWord.getWord());
-	Word[] linksList = new Word[0];
-	if(endingWord.getDistance() == 0){
-	    System.out.println(endingWord.getWord());
-	    System.out.println(runningList);
-	    runningList.clear();
-	}else{
-	    for(int i = 0; i < endingWord.linksTo.length; i ++){
-		
-		if (endingWord.linksTo[i].getDistance() < endingWord.getDistance()){
-		    linksList = endingWord.linksTo;
-		    runningList.add(endingWord.getWord());
-		    recursify(linksList[i], runningList);
+    //	Word[] linksList = new Word[0];
+    //	if(endingWord.getDistance() == 0){
+    //	    System.out.println(endingWord.getWord());
+    //	    System.out.println(runningList);
+    //	    runningList.clear();
+    //	}else{
+    //	    for(int i = 0; i < endingWord.linksTo.length; i ++){
+    //		
+    //		if (endingWord.linksTo[i].getDistance() < endingWord.getDistance()){
+    //		    linksList = endingWord.linksTo;
+    //		    runningList.add(endingWord.getWord());
+    //		    recursify(linksList[i], runningList);
 		    // System.out.println(endingWord.getWord());
-		}
-		
-	    }
-	}
+    //		}
+    //		
+    //	    }
+    //	}
 	
 	
 	
 	
-    }
+	    //	}
+
     
     public static void main (String[] args){
 	//checks that the user has inputted two samelength English words
@@ -233,27 +250,27 @@ public class Word{
 		
 	    //System.out.println(allFull); // for testing
 	   
-	    //  System.out.println(endW);
-	    //  boolean done = false;
-	    //	    Word on = new Word();
+	      System.out.println(endW);
+	      boolean done = false;
+	    	    Word on = new Word();
         
 	    /*prints out the list of words, starting from the first word and "backtracking"
 	      to the last word*/
-	    // for(int x = 0; x < words.length; x++){
-		//	if(words[x].getWord().equals(endW)){
-		    //  on = words[x];
-		    //	}
+	     for(int x = 0; x < words.length; x++){
+			if(words[x].getWord().equals(endW)){
+		      on = words[x];
+		    	}
             
-		// }
+		 }
         
-	    // while(on.getDistance() != 0){
-		//	on = on.backTrack();
-		//	System.out.println(on.getWord());
-		//   }
+	     while(on.getDistance() != 0){
+			on = on.recursify();
+			System.out.println(on.getWord());
+		   }
 
 	    //   System.out.println("\n\n\n\n\n\n\n\n\n");
-	    ArrayList<String> runningList = new ArrayList<String>();
-	    recursify(endingWord, runningList);
+	    //    ArrayList<String> runningList = new ArrayList<String>();
+	    //  recursify(endingWord, runningList);
 	    
 	}
 	//prints directions if the user input does not comply with the format
