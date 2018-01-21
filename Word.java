@@ -119,7 +119,7 @@ public class Word{
 	public static void directions(){
 	System.out.println("Welcome to Word Barf!");
 	System.out.println("This is a program that takes two same-length English words and prints");
-	System.out.println("a string of words going from one to the other changing one letter at a time.");
+	System.out.println("the shortest string of words going from one to the other changing one letter at a time.");
 	System.out.println("Please enter the word you would like to start with,");
 	System.out.println("followed by the word you would like to end with in the following format:");
 	System.out.println("java Word startWord endWord");
