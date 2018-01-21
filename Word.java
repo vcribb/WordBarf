@@ -53,21 +53,36 @@ public class Word{
       an adjacent word with the smallest distance. The Math.random is added to
       return a different shortest path each time the program is run*/
     public Word recursify(){
-	int mindex = 0;     
-	if(((int) ((Math.random() * 10) % 2)) == 0){
-	    for(int i = 0; i < linksTo.length; i++){
-		if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
-		    mindex = i;
-		}
+	int mindex = 0;
+	ArrayList<Integer> mindexes = new ArrayList<Integer>();
+	for(int i = 0; i < linksTo.length; i++){
+	    if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+		mindex = i;
 	    }
-	}else{
-	    for(int i = linksTo.length - 1; i >= 0; i--){
-                if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
-                   mindex = i;
-                }
-            }
 	}
-        return linksTo[mindex];
+     
+	for(int i = 0; i < linksTo.length; i++){
+	    if(linksTo[i].getDistance() == linksTo[mindex].getDistance()){
+		mindexes.add(i);
+	    }
+	}
+
+	return linksTo[(int) mindexes.get( new Random().nextInt(mindexes.size()))];
+
+	//	if(((int) ((Math.random() * 10) % 2)) == 0){
+	//  for(int i = 0; i < linksTo.length; i++){
+	//	if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+	//	    mindex = i;
+	//		}
+	//  }
+	//	}else{
+	//  for(int i = linksTo.length - 1; i >= 0; i--){
+	//      if(linksTo[i].getDistance() < linksTo[mindex].getDistance()){
+	//         mindex = i;
+	//      }
+	//  }
+	//	}
+	// return linksTo[mindex];
     }
 
     /*parseLine reads into the precomputed file of all English words
