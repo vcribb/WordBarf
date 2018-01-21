@@ -118,10 +118,11 @@ public class Word{
 	//the directions print if the user doesn't input data correctly
 	public static void directions(){
 	System.out.println("Welcome to Word Barf!");
-	System.out.println("This is a program that takes two same-length English words and prints");
-	System.out.println("the shortest string of words going from one to the other changing one letter at a time.");
-	System.out.println("Please enter the word you would like to start with,");
-	System.out.println("followed by the word you would like to end with in the following format:");
+	System.out.println("This is a program that takes two same-length English words and prints the");
+	System.out.println("shortest string of words going from one to the other changing one letter");
+	System.out.println("at a time.");
+	System.out.println("Please enter the word you would like to start with, followed by the word you");
+	System.out.println("would like to end with in the following format:");
 	System.out.println("java Word startWord endWord");
 	System.out.println("Thank you!");
     }
